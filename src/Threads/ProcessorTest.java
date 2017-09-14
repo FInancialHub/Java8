@@ -35,6 +35,7 @@ class Processor implements Callable<Map> {
 
 	private Map readFile(File file2) {
 		try (Stream<String> stream = Files.lines(Paths.get(file2.getAbsolutePath()))) {
+			
 			return stream.filter(line -> line.startsWith("JP"))
 					.map(line -> line.split(","))
 					.collect(Collectors.toMap(array -> array[2],array -> array[1],(oldvalue,newvalue) -> oldvalue ));
